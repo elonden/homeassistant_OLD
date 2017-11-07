@@ -1,0 +1,50 @@
+### BOM Sensors
+sensor.bom_gympie_air_temp_c:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+  unit_of_measurement: "C"
+sensor.bom_gympie_pressure_mb:
+  friendly_name: Pressure
+  icon: mdi:zip-box
+  unit_of_measurement: "mb"
+sensor.bom_gympie_rain_today:
+  friendly_name: Rain today
+  icon: mdi:weather-rainy
+  unit_of_measurement: "mm"
+sensor.bom_gympie_relative_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+  unit_of_measurement: "%"
+sensor.bom_gympie_wind_direction:
+  friendly_name: Wind Direction
+  icon: mdi:weather-windy
+  unit_of_measurement: "Dir"
+sensor.bom_gympie_wind_speed_kmh:
+  friendly_name: Wind Speed
+  icon: mdi:weather-windy
+  unit_of_measurement: "km/h"
+
+### Power Sensors
+sensor.sw111:
+  friendly_name: Erwins Computers
+sensor.sw112:
+  friendly_name: TV 
+sensor.sw113:
+  friendly_name: Fridge
+sensor.sw114:
+  friendly_name: Oven
+sensor.sw115:
+  friendly_name: Pool Pump
+
+
+### Switches
+switch.sw111:
+  friendly_name: Erwins Computers
+switch.sw112:
+  friendly_name: TV
+switch.sw113:
+  friendly_name: Fridge
+switch.sw114:
+  friendly_name: Oven
+switch.sw115:
+  friendly_name: Pool pump

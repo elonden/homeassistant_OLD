@@ -1,0 +1,58 @@
+### View tabs
+  default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - sensor.speedtest_download
+#      - sensor.speedtest_upload
+      - group.main_weather
+      - device_tracker.erwin_erwin
+      - group.main_automations
+
+  main_power_view:
+    name: Power
+    icon: mdi:flash
+    view: yes
+    entities:
+    - group.main_power_sensors
+    - group.main_power_switches
+
+#####  Groups      
+  main_weather:
+    name: Weather
+    entities:
+      - sensor.bom_gympie_air_temp_c
+      - sensor.bom_gympie_pressure_mb
+      - sensor.bom_gympie_rain_today
+      - sensor.bom_gympie_relative_humidity
+      - sensor.bom_gympie_wind_direction
+      - sensor.bom_gympie_wind_speed_kmh
+
+  main_power_switches:
+    name: Power Switches
+    icon: mdi:flash
+    control: hidden
+    entities:
+      - switch.sw111
+      - switch.sw112
+      - switch.sw113
+      - switch.sw114
+      - switch.sw115
+
+  main_power_sensors:
+    name: Power Sensors
+    icon: mdi:thermometer-lines
+    entities:
+      - sensor.total_power
+      - sensor.sw111
+      - sensor.sw112
+      - sensor.sw113
+      - sensor.sw114
+      - sensor.sw115
+
+  main_automations:
+    name: Automations
+    entities:
+#      - automation.turn_on_pool_pump
+#      - automation.turn_off_pool_pump
+      - input_slider.poolpump_time

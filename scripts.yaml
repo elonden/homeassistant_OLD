@@ -1,0 +1,11 @@
+## Turn the pool pumpoff after 4 hours it has been switch on by the sun rise sensor
+  turnpool_off:
+###        Which basically means wait 4 hours before shutting it off
+    alias: "Turn on pump for 4 hours"  
+    sequence: 
+      - delay: '00:{{ states.input_slider.poolpump_time.state | int }}:10'
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.sw115
+
+
