@@ -7,15 +7,15 @@
 #      - sensor.speedtest_upload
       - group.main_weather
       - device_tracker.erwin_erwin
-      - group.main_automations
+      - group.main_power_sensors
 
   main_power_view:
     name: Power
     icon: mdi:flash
     view: yes
     entities:
-    - group.main_power_sensors
     - group.main_power_switches
+    - group.main_automations
 
 #####  Groups      
   main_weather:
@@ -37,7 +37,6 @@
       - switch.sw112
       - switch.sw113
       - switch.sw114
-      - switch.sw115
 
   main_power_sensors:
     name: Power Sensors
@@ -55,4 +54,5 @@
     entities:
 #      - automation.turn_on_pool_pump
 #      - automation.turn_off_pool_pump
-      - input_slider.poolpump_time
+      - input_number.poolpump_time
+      - switch.sw115
