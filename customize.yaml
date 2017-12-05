@@ -32,7 +32,7 @@ sensor.sw112:
 sensor.sw113:
   friendly_name: Fridge
 sensor.sw114:
-  friendly_name: Oven
+  friendly_name: Pool & Garden lights 1
 sensor.sw115:
   friendly_name: Pool Pump
 
@@ -45,6 +45,6 @@ switch.sw112:
 switch.sw113:
   friendly_name: Fridge
 switch.sw114:
-  friendly_name: Oven
+  friendly_name: Pool & Garden lights 1
 switch.sw115:
   friendly_name: Pool pump

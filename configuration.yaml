@@ -43,6 +43,10 @@ http:
   # Uncomment this to add a password (recommended!)
   api_password: !secret http_passwd
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: evlonden.no-ip.biz
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_key
+  server_port: 443
 # base_url: example.duckdns.org:8123
 #  base_url: evlonden.no-ip.biz:8123
 #  ssl_certificate: /etc/nginx/ssl/evlonden.no-ip.biz.cert.pem
@@ -165,6 +169,13 @@ sensor:
            float(states.sensor.sw114.state) + 
            float(states.sensor.sw115.state) | int}}
 
+  - platform: command_line
+    name: SSL Cert
+    unit_of_measurement: days
+    scan_interval: 21600
+    command: "ssl-cert-check -b -c /etc/letsencrypt/live/evlonden.no-ip.biz/cert.pem | awk '{print $NF}'"
+
+
 # Text to speech
 tts:
   - platform: google
@@ -240,11 +251,11 @@ device_tracker:
 
 input_number:
   poolpump_time:
-    name: "Pool Pump run time"
-    initial: 60
-    min: 30
-    max: 240
-    step: 5
+    name: "Pool Pump run time in hours"
+    initial: 4
+    min: 2
+    max: 8
+    step: 1
 
 
 group: !include groups.yaml

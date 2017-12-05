@@ -4,6 +4,7 @@
     icon: mdi:home
     entities:
       - sensor.speedtest_download
+      - sensor.ssl_cert
 #      - sensor.speedtest_upload
       - group.main_weather
       - device_tracker.erwin_erwin
