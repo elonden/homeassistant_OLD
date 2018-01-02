@@ -37,6 +37,11 @@ sensor.sw115:
   friendly_name: Pool Pump
 
 
+### Lights
+light.led2:
+  fiendly_name: Decking LED
+
+
 ### Switches
 switch.sw111:
   friendly_name: Erwins Computers

@@ -9,14 +9,21 @@
       - group.main_weather
       - device_tracker.erwin_erwin
       - group.main_power_sensors
-
+  
+  main_lights_view:
+    name: Lights
+    icon: mdi:lightbulb-on
+    view: yes
+    entities:
+      - group.main_light_switches
+      
   main_power_view:
     name: Power
     icon: mdi:flash
     view: yes
     entities:
-    - group.main_power_switches
-    - group.main_automations
+      - group.main_power_switches
+      - group.main_automations
 
 #####  Groups      
   main_weather:
@@ -29,6 +36,12 @@
       - sensor.bom_gympie_wind_direction
       - sensor.bom_gympie_wind_speed_kmh
 
+  main_light_switches:
+    name: Lights
+    entities:
+      - light.led2
+      - switch.sw114
+
   main_power_switches:
     name: Power Switches
     icon: mdi:flash
@@ -37,7 +50,6 @@
       - switch.sw111
       - switch.sw112
       - switch.sw113
-      - switch.sw114
 
   main_power_sensors:
     name: Power Sensors

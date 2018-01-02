@@ -258,6 +258,7 @@ input_number:
     step: 1
 
 
+light: !include lights.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
