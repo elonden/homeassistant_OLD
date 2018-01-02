@@ -1,0 +1,9 @@
+  - platform: mqtt
+    name: "led2"
+    command_topic: "/home/switch/led2/relay/0/set"
+    state_topic: "/home/switch/led2/relay/0"
+    rgb_command_topic: "/home/switch/led2/color/set"
+    payload_on: 1
+    payload_off: 0
+    brightness_command_topic: "/home/switch/led2/brightness/set"
+    
