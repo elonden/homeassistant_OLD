@@ -39,7 +39,7 @@ sensor.sw115:
 
 ### Lights
 light.led2:
-  fiendly_name: Decking LED
+  friendly_name: Decking LED
 
 
 ### Switches
