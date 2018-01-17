@@ -3,7 +3,20 @@
     command_topic: "/home/switch/led2/relay/0/set"
     state_topic: "/home/switch/led2/relay/0"
     rgb_command_topic: "/home/switch/led2/color/set"
+    rgb_state_topic: "/home/switch/led2/color/"
+    white_value_command_topic: "/home/switch/led2/channel/3/set"
     payload_on: 1
     payload_off: 0
     brightness_command_topic: "/home/switch/led2/brightness/set"
-    
+
+  - platform: mqtt
+    name: "led1"
+    command_topic: "/home/switch/led1/relay/0/set"
+    state_topic: "/home/switch/led1/relay/0"
+    rgb_command_topic: "/home/switch/led1/color/set"
+    rgb_state_topic: "/home/switch/led1/color/"
+    white_value_command_topic: "/home/switch/led1/channel/3/set"
+    payload_on: 1
+    payload_off: 0
+    brightness_command_topic: "/home/switch/led1/brightness/set"
+

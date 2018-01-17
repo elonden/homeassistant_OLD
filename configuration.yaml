@@ -29,11 +29,11 @@ recorder:
   purge_keep_days: 5
   
 mqtt:
-   broker: 192.168.8.49
-#   discovery: true
-#   discovery_prefix: home
-   username: !secret mosquitto_user
-   password: !secret mosquitto_passwd
+  broker: 192.168.8.49
+ #  discovery: true
+ #discovery_prefix: home
+  username: !secret mosquitto_user
+  password: !secret mosquitto_passwd
 
 
 # Enables configuration UI
@@ -133,27 +133,27 @@ sensor:
     value_template: '{{ value_json.batt}}'
 
   - platform: mqtt
-    state_topic: "home/switch/sw111/power"
+    state_topic: "/home/switch/sw111/power"
     name: "sw111"
     unit_of_measurement: "W"
 
   - platform: mqtt
-    state_topic: "home/switch/sw112/power"
+    state_topic: "/home/switch/sw112/power"
     name: "sw112"
     unit_of_measurement: "W"
 
   - platform: mqtt
-    state_topic: "home/switch/sw113/power"
+    state_topic: "/home/switch/sw113/power"
     name: "sw113"
     unit_of_measurement: "W"
 
   - platform: mqtt
-    state_topic: "home/switch/sw114/power"
+    state_topic: "/home/switch/sw114/power"
     name: "sw114"
     unit_of_measurement: "W"
 
   - platform: mqtt
-    state_topic: "home/switch/sw115/power"
+    state_topic: "/home/switch/sw115/power"
     name: "sw115"
     unit_of_measurement: "W"
 
@@ -183,43 +183,53 @@ tts:
 switch:
   - platform: mqtt
     name: "sw111"
-    state_topic: "home/switch/sw111/relay/0"
-    command_topic: "home/switch/sw111/relay/0/set"
+    state_topic: "/home/switch/sw111/relay/0"
+    command_topic: "/home/switch/sw111/relay/0/set"
     payload_on: 1
     payload_off: 0
-    optimistic: false
-    qos: 0
-    retain: true
+#    optimistic: false
+#    qos: 0
+#    retain: true
 
   - platform: mqtt
     name: "sw112"
-    state_topic: "home/switch/sw112/relay/0"
-    command_topic: "home/switch/sw112/relay/0/set"
+    state_topic: "/home/switch/sw112/relay/0"
+    command_topic: "/home/switch/sw112/relay/0/set"
     payload_on: 1
     payload_off: 0
-    optimistic: false
-    qos: 0
-    retain: true
+#    optimistic: false
+#    qos: 0
+#    retain: true
+
+  - platform: mqtt
+    name: "sw113"
+    state_topic: "/home/switch/sw113/relay/0"
+    command_topic: "/home/switch/sw113/relay/0/set"
+    payload_on: 1
+    payload_off: 0
+#    optimistic: false
+#    qos: 0
+#    retain: true
 
   - platform: mqtt
     name: "sw114"
-    state_topic: "home/switch/sw114/relay/0"
-    command_topic: "home/switch/sw114/relay/0/set"
+    state_topic: "/home/switch/sw114/relay/0"
+    command_topic: "/home/switch/sw114/relay/0/set"
     payload_on: 1
     payload_off: 0
-    optimistic: false
-    qos: 0
-    retain: true
+#    optimistic: false
+#    qos: 0
+#    retain: true
 
   - platform: mqtt
     name: "sw115"
-    state_topic: "home/switch/sw115/relay/0"
-    command_topic: "home/switch/sw115/relay/0/set"
+    state_topic: "/home/switch/sw115/relay/0"
+    command_topic: "/home/switch/sw115/relay/0/set"
     payload_on: 1
     payload_off: 0
-    optimistic: false
-    qos: 0
-    retain: true
+#    optimistic: false
+#    qos: 0
+#    retain: true
 
 ###########################
 # Zones

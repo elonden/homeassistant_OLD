@@ -30,9 +30,9 @@ sensor.sw111:
 sensor.sw112:
   friendly_name: TV 
 sensor.sw113:
-  friendly_name: Fridge
-sensor.sw114:
   friendly_name: Pool & Garden lights 1
+sensor.sw114:
+  friendly_name: Temporarily offline
 sensor.sw115:
   friendly_name: Pool Pump
 
@@ -40,7 +40,8 @@ sensor.sw115:
 ### Lights
 light.led2:
   friendly_name: Decking LED
-
+light.led1:
+  friendly_name: Spare LED
 
 ### Switches
 switch.sw111:
@@ -48,8 +49,8 @@ switch.sw111:
 switch.sw112:
   friendly_name: TV
 switch.sw113:
-  friendly_name: Fridge
-switch.sw114:
   friendly_name: Pool & Garden lights 1
+switch.sw114:
+  friendly_name: Temporarily offline
 switch.sw115:
   friendly_name: Pool pump

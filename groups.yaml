@@ -39,8 +39,9 @@
   main_light_switches:
     name: Lights
     entities:
+      - light.led1
       - light.led2
-      - switch.sw114
+      - switch.sw113
 
   main_power_switches:
     name: Power Switches
@@ -49,7 +50,7 @@
     entities:
       - switch.sw111
       - switch.sw112
-      - switch.sw113
+#      - switch.sw114
 
   main_power_sensors:
     name: Power Sensors
@@ -59,7 +60,7 @@
       - sensor.sw111
       - sensor.sw112
       - sensor.sw113
-      - sensor.sw114
+#      - sensor.sw114
       - sensor.sw115
 
   main_automations:
