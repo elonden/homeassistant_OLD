@@ -166,7 +166,6 @@ sensor:
           {{ float(states.sensor.sw111.state) + 
            float(states.sensor.sw112.state) + 
            float(states.sensor.sw113.state) + 
-           float(states.sensor.sw114.state) + 
            float(states.sensor.sw115.state) | int}}
 
   - platform: command_line
@@ -257,7 +256,6 @@ device_tracker:
     waypoint_whitelist:
       - erwin
       - Erwin
-#
 
 input_number:
   poolpump_time:
