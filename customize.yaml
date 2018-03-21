@@ -24,6 +24,7 @@ sensor.bom_gympie_wind_speed_kmh:
   icon: mdi:weather-windy
   unit_of_measurement: "km/h"
 
+
 ### Power Sensors
 sensor.sw111:
   friendly_name: Erwins Computers
@@ -35,7 +36,12 @@ sensor.sw114:
   friendly_name: Temporarily offline
 sensor.sw115:
   friendly_name: Pool Pump
-
+sensor.current_power:
+  friendly_name: Current Solar Power
+sensor.todays_energy:
+  friendly_name: Solar Energy Today
+sensor.total_energy:
+  friendly_name: Solar Energy Total
 
 ### Lights
 light.led2:
@@ -54,3 +60,8 @@ switch.sw114:
   friendly_name: Temporarily offline
 switch.sw115:
   friendly_name: Pool pump
+
+
+## Local PI Sensor
+sensor.pi_temperature:
+  friendly_name: Pi Temp

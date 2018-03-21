@@ -20,3 +20,35 @@
     payload_off: 0
     brightness_command_topic: "/home/switch/led1/brightness/set"
 
+
+  - platform: mqtt_json
+    name: "led3"
+    command_topic: "/home/switch/led3/set"
+    state_topic: "/home/switch/led3/state"
+    effect: true
+    effect_list:
+      - ambient
+      - bpm
+      - candy cane  
+      - confetti  
+      - cyclon rainbow  
+      - dots  
+      - fire  
+      - glitter  
+      - juggle  
+      - lightning
+      - noise  
+      - police all  
+      - police one  
+      - rainbow  
+      - rainbow with glitter  
+      - ripple  
+      - sinelon  
+      - solid  
+      - twinkle  
+    brightness: true
+    flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+

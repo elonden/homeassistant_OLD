@@ -5,17 +5,20 @@
     entities:
       - sensor.speedtest_download
       - sensor.ssl_cert
+      - sensor.pi_temperature
 #      - sensor.speedtest_upload
       - group.main_weather
       - device_tracker.erwin_erwin
       - group.main_power_sensors
-  
+      - group.main_solar
+
   main_lights_view:
     name: Lights
     icon: mdi:lightbulb-on
     view: yes
     entities:
       - group.main_light_switches
+      - group.main_led_animaton
       
   main_power_view:
     name: Power
@@ -43,6 +46,12 @@
       - light.led2
       - switch.sw113
 
+  main_led_animaton:
+    name: "Animated LEDS"
+    entities:
+      - light.led3
+      - input_number.led3_speed
+
   main_power_switches:
     name: Power Switches
     icon: mdi:flash
@@ -62,6 +71,14 @@
       - sensor.sw113
 #      - sensor.sw114
       - sensor.sw115
+
+  main_solar:
+    name: Solar power
+    icon: mdi:flash
+    entities:
+      - sensor.current_power
+      - sensor.todays_energy
+      - sensor.total_energy
 
   main_automations:
     name: Automations

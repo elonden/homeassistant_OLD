@@ -1,23 +1,47 @@
+#- id: pool_pump_on
+#  alias: Turn on Pool Pump
+#  initial_state: 'on'
+#  trigger:
+#    platform: sun
+#    event: sunrise
+#    offset: 04:00:00
+#  action:
+#    service: switch.turn_on
+#    entity_id: switch.sw115
+
 - id: pool_pump_on
-  alias: Turn on Pool Pump
+  alias: Turn on pool pump
   initial_state: 'on'
   trigger:
-    platform: sun
-    event: sunrise
-    offset: 04:00:00
+    platform: numeric_state
+    entity_id: sensor.current_power
+    above: 1.3
+    for:
+      minutes: 15
+  condition:
+    condition: or
+    conditions:
+      - condition: time
+        weekday:
+        - sun
+        - wed
+        - fri
   action:
-    service: homeassistant.turn_on
+    service: switch.turn_on
     entity_id: switch.sw115
 
 - id: pool_pump_off
   alias: Turn off Pool Pump
   initial_state: 'on'
   trigger:
-    platform: state
-    entity_id: switch.sw115
-    to: 'on'
+    platform: numeric_state
+    entity_id: sensor.current_power
+    below: 0.8
+    for:
+      minutes: 15
   action:
-    service: script.turnpool_off
+    service: switch.turn_off
+    entity_id: switch.sw115
 
 - id: p-garden_lights_on
   alias: Pool lights on
@@ -26,16 +50,20 @@
     offset: 00:30:00
     platform: sun
   action:
-  - entity_id: switch.sw113
-    service: homeassistant.turn_on
+    service: switch.turn_on
+    entity_id: switch.sw113
+  condition:
+    condition: state
+    entity_id: device_tracker.erwin_erwin
+    state: home 
 
 - id: p-garden_lights_off
   alias: Pool lights off
   trigger:
     platform: time
-    at: '23:59:00'
+    at: '23:30:00'
   action:
-    service: homeassistant.turn_off
+    service: switch.turn_off
     entity_id: switch.sw113
 
 - id: d-led2-light-on
@@ -49,10 +77,14 @@
       entity_id: light.led2
       data:
         brightness: 220
-        rgb_color: [220,220,0]
-    - service: notify.notify
+        rgb_color: [0,0,240]
+    - service: notify.ios_Erwin
       data: 
-        message: Deck LEDs turned on
+        message: 'Deck LEDs turned on'
+    - service: tts.google_say
+      entity_id: device_tracker.erwin_erwin
+      data:
+        message: 'Decking LED lights turned on' 
   condition:
     condition: state
     entity_id: device_tracker.erwin_erwin
@@ -64,8 +96,8 @@
     at: '23:59:00'
     platform: time
   action:
-    entity_id: light.led2
     service: light.turn_off
+    entity_id: light.led2
   condition:
     condition: state
     entity_id: light.led2
@@ -79,10 +111,12 @@
     zone: zone.home
     event: leave
   action:
-    service: light.turn_off
-    entity_id: 
-      - light.led2
-      - switch.sw113
+    - service: light.turn_off
+      entity_id: 
+        - light.led2
+    - service: switch.turn_off
+      entity_id:
+        - switch.sw113
 
 - id: erwin_home
   alias: Erwin comes home
@@ -98,7 +132,7 @@
       data: 
         rgb_color: [0, 0, 255]
         brighness: 220
-    - service: homeassistant.turn_on
+    - service: switch.turn_on
       entity_id: 
         - switch.sw113
   condition: 
@@ -106,3 +140,36 @@
     after: sunset
     after_offset: "00:30:00"
 
+
+- id: TV
+  alias: Notify when TV goes on
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.sw112
+    above: 70
+  action:
+    - service: notify.ios_erwin
+      data:
+        message: 'TV turned on'
+    - service: tts.google_say                     
+      entity_id: device_tracker.erwin_erwin
+      data:
+        message: 'TV  turned on' 
+  condition:
+    condition: state
+    entity_id: device_tracker.erwin_erwin
+    state: not_home
+
+- id: led3
+  alias: "LED3 animation speed"
+  initial_state: true
+  hide_entity: false
+  trigger:
+    - platform: state
+      entity_id: input_number.led3
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "/home/switch/led3/set"
+        payload: '{"transition":{{ trigger.to_state.state | int }}}'
+    

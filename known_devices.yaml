@@ -7,3 +7,21 @@ erwin_erwin:
   track: true
   vendor: Apple
   gravatar: erwin@erwinvanlonden.net
+
+erwin_luna:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Luna
+  picture:
+  track: true
+  vendor: Apple
+
+erwin:
+  hide_if_away: true
+  icon:
+  mac:
+  name: erwin
+  picture:
+  track: false
+  vendor:

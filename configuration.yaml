@@ -78,7 +78,7 @@ logbook:
 # Track the sun
 sun:
 
-#ios:
+ios:
 
 # Weather prediction
 sensor:
@@ -157,10 +157,25 @@ sensor:
     name: "sw115"
     unit_of_measurement: "W"
 
+  - platform: mqtt
+    state_topic: /home/power/solar/current_power
+    name: Current Power
+    unit_of_measurement: "KW"
+
+  - platform: mqtt
+    state_topic: /home/power/solar/total_energy
+    name: Total Energy
+    unit_of_measurement: "KWh"
+
+  - platform: mqtt
+    state_topic: /home/power/solar/today_energy
+    name: Todays Energy
+    unit_of_measurement: "KWh"
+
   - platform: template
     sensors:
       total_power:
-        friendly_name: "Total Power"
+        friendly_name: "Total Power Usage"
         unit_of_measurement: "W"
         value_template: > 
           {{ float(states.sensor.sw111.state) + 
@@ -174,10 +189,18 @@ sensor:
     scan_interval: 21600
     command: "ssl-cert-check -b -c /etc/letsencrypt/live/evlonden.no-ip.biz/cert.pem | awk '{print $NF}'"
 
+  - platform: command_line
+    name: Pi Temperature
+    unit_of_measurement: "C"
+    scan_interval: 300
+    command: "expr $(cat /sys/class/thermal/thermal_zone0/temp) / 1000"
 
 # Text to speech
 tts:
   - platform: google
+    cache: true
+    cache_dir: /mnt/music/
+    time_memory: 300
 
 switch:
   - platform: mqtt
@@ -256,6 +279,7 @@ device_tracker:
     waypoint_whitelist:
       - erwin
       - Erwin
+      - luna
 
 input_number:
   poolpump_time:
@@ -265,8 +289,15 @@ input_number:
     max: 8
     step: 1
 
+  led3_speed:
+    name: "Control LED speed"
+    initial: 150
+    min: 1
+    max: 150
+    step: 10
 
 light: !include lights.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+#notify: !include notify.yaml
