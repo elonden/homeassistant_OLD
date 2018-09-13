@@ -24,8 +24,9 @@
       - condition: time
         weekday:
         - sun
-        - wed
-        - fri
+#        - wed
+        - thu
+#        - fri
   action:
     service: switch.turn_on
     entity_id: switch.sw115
@@ -74,10 +75,12 @@
     platform: sun
   action:
     - service: light.turn_on
-      entity_id: light.led2
+      entity_id: 
+        - light.led2
+        - light.led1
       data:
-        brightness: 220
-        rgb_color: [0,0,240]
+        brightness: 100
+        rgb_color: [0,0,255]
     - service: notify.ios_Erwin
       data: 
         message: 'Deck LEDs turned on'
@@ -97,7 +100,9 @@
     platform: time
   action:
     service: light.turn_off
-    entity_id: light.led2
+    entity_id:
+      - light.led2
+      - light.led1
   condition:
     condition: state
     entity_id: light.led2
@@ -114,6 +119,7 @@
     - service: light.turn_off
       entity_id: 
         - light.led2
+        - light.led1
     - service: switch.turn_off
       entity_id:
         - switch.sw113
@@ -129,9 +135,10 @@
     - service: light.turn_on
       entity_id:
         - light.led2
+        - light.led1
       data: 
         rgb_color: [0, 0, 255]
-        brighness: 220
+        brighness: 100
     - service: switch.turn_on
       entity_id: 
         - switch.sw113
@@ -160,16 +167,16 @@
     entity_id: device_tracker.erwin_erwin
     state: not_home
 
-- id: led3
+- id: led4
   alias: "LED3 animation speed"
   initial_state: true
   hide_entity: false
   trigger:
     - platform: state
-      entity_id: input_number.led3
+      entity_id: input_number.led4
   action:
     - service: mqtt.publish
       data_template:
-        topic: "/home/switch/led3/set"
+        topic: "/home/switch/led4/set"
         payload: '{"transition":{{ trigger.to_state.state | int }}}'
     

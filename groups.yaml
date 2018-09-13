@@ -1,8 +1,10 @@
 ### View tabs
   default_view:
+    name: Home
     view: yes
     icon: mdi:home
     entities:
+      - sensor.amsterdam
       - sensor.speedtest_download
       - sensor.ssl_cert
       - sensor.pi_temperature
@@ -11,6 +13,8 @@
       - device_tracker.erwin_erwin
       - group.main_power_sensors
       - group.main_solar
+      - group.main_pir
+      - group.main_uv_info
 
   main_lights_view:
     name: Lights
@@ -28,6 +32,12 @@
       - group.main_power_switches
       - group.main_automations
 
+  main_other_view:
+    name: Others
+    icon: mdi:ice-cream
+    view: yes
+    entities:
+
 #####  Groups      
   main_weather:
     name: Weather
@@ -39,6 +49,13 @@
       - sensor.bom_gympie_wind_direction
       - sensor.bom_gympie_wind_speed_kmh
 
+  main_uv_info:
+    name: UV Info
+    entities:
+      - binary_sensor.protection_window
+      - sensor.current_ozone_level
+      - sensor.current_uv_index
+
   main_light_switches:
     name: Lights
     entities:
@@ -49,8 +66,8 @@
   main_led_animaton:
     name: "Animated LEDS"
     entities:
-      - light.led3
-      - input_number.led3_speed
+      - light.led4
+      - input_number.led4_speed
 
   main_power_switches:
     name: Power Switches
@@ -72,6 +89,11 @@
 #      - sensor.sw114
       - sensor.sw115
 
+  main_pir:
+    name: PIR Sensors
+    entities:
+      - sensor.pir_led4
+
   main_solar:
     name: Solar power
     icon: mdi:flash
@@ -87,3 +109,4 @@
 #      - automation.turn_off_pool_pump
       - input_number.poolpump_time
       - switch.sw115
+

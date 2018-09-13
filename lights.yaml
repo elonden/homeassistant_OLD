@@ -22,9 +22,9 @@
 
 
   - platform: mqtt_json
-    name: "led3"
-    command_topic: "/home/switch/led3/set"
-    state_topic: "/home/switch/led3/state"
+    name: "led4"
+    command_topic: "/home/switch/led4/set"
+    state_topic: "/home/switch/led4/state"
     effect: true
     effect_list:
       - ambient

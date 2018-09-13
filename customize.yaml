@@ -27,7 +27,7 @@ sensor.bom_gympie_wind_speed_kmh:
 
 ### Power Sensors
 sensor.sw111:
-  friendly_name: Erwins Computers
+  friendly_name: Fridge
 sensor.sw112:
   friendly_name: TV 
 sensor.sw113:
@@ -43,15 +43,25 @@ sensor.todays_energy:
 sensor.total_energy:
   friendly_name: Solar Energy Total
 
+### UV Sensors
+binary_sensor.protection_window:
+  friendly_name: Wear sunscreen
+sensor.current_ozone_level:
+  friendly_name: Ozone level
+sensor.current_uv_index:
+  friendly_name: UV Index
+
 ### Lights
+light.led4:
+  friendly_name: North LED
 light.led2:
-  friendly_name: Decking LED
+  friendly_name: Pool LED
 light.led1:
-  friendly_name: Spare LED
+  friendly_name: South LED
 
 ### Switches
 switch.sw111:
-  friendly_name: Erwins Computers
+  friendly_name: Fridge
 switch.sw112:
   friendly_name: TV
 switch.sw113:
@@ -65,3 +75,7 @@ switch.sw115:
 ## Local PI Sensor
 sensor.pi_temperature:
   friendly_name: Pi Temp
+
+## 
+sensor.pir_led4:
+  friendly_name: PIR LED 3

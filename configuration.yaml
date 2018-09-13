@@ -26,7 +26,7 @@ logger:
 
 recorder:
   purge_interval: 3
-  purge_keep_days: 5
+  purge_keep_days: 30
   
 mqtt:
   broker: 192.168.8.49
@@ -46,11 +46,7 @@ http:
   base_url: evlonden.no-ip.biz
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret ssl_key
-  server_port: 443
-# base_url: example.duckdns.org:8123
-#  base_url: evlonden.no-ip.biz:8123
-#  ssl_certificate: /etc/nginx/ssl/evlonden.no-ip.biz.cert.pem
-#  ssl_key: /etc/nginx/ssl/evlonden.no-ip.biz.key.pem
+#  server_port: 443
 #  use_x_forward_for: True
 
 
@@ -172,6 +168,10 @@ sensor:
     name: Todays Energy
     unit_of_measurement: "KWh"
 
+  - platform: mqtt
+    name: "PIR led4"
+    state_topic: /home/pir/led4/set
+
   - platform: template
     sensors:
       total_power:
@@ -194,6 +194,11 @@ sensor:
     unit_of_measurement: "C"
     scan_interval: 300
     command: "expr $(cat /sys/class/thermal/thermal_zone0/temp) / 1000"
+
+  - platform: worldclock
+    time_zone: Europe/Amsterdam
+    name: Amsterdam
+
 
 # Text to speech
 tts:
@@ -253,6 +258,13 @@ switch:
 #    qos: 0
 #    retain: true
 
+
+
+
+
+
+
+
 ###########################
 # Zones
 zone:
@@ -281,6 +293,17 @@ device_tracker:
       - Erwin
       - luna
 
+openuv:
+  api_key: !secret openuvapi
+  scan_interval: 1800
+  sensors: 
+    monitored_conditions: 
+      - current_uv_index
+      - current_ozone_level
+  binary_sensors: 
+    monitored_conditions: 
+      - uv_protection_window
+
 input_number:
   poolpump_time:
     name: "Pool Pump run time in hours"
@@ -289,7 +312,7 @@ input_number:
     max: 8
     step: 1
 
-  led3_speed:
+  led4_speed:
     name: "Control LED speed"
     initial: 150
     min: 1
