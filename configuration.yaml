@@ -284,14 +284,23 @@ zone 2:
 
 ##########################
 # Device tracker Owntrack
-device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 200
-    waypoints: True
-    waypoint_whitelist:
-      - erwin
-      - Erwin
-      - luna
+#device_tracker:
+#  - platform: owntracks
+#    max_gps_accuracy: 200
+#    waypoints: True
+#    waypoint_whitelist:
+#      - erwin
+#      - Erwin
+#      - luna
+#
+owntracks:
+  max_gps_accuracy: 200
+  waypoints: true
+  mqtt_topic: "owntracks/#"
+  events_only: false
+  waypoint_whitelist:
+    - erwin
+  
 
 openuv:
   api_key: !secret openuvapi

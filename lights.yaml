@@ -21,7 +21,8 @@
     brightness_command_topic: "/home/switch/led1/brightness/set"
 
 
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: "led4"
     command_topic: "/home/switch/led4/set"
     state_topic: "/home/switch/led4/state"

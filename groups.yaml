@@ -11,6 +11,8 @@
 #      - sensor.speedtest_upload
       - group.main_weather
       - device_tracker.erwin_erwin
+      - device_tracker.erwin_luna
+      - device_tracker.erwin_cleo_oppo
       - group.main_power_sensors
       - group.main_solar
       - group.main_pir

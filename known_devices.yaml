@@ -17,11 +17,18 @@ erwin_luna:
   track: true
   vendor: Apple
 
+erwin_cleo_oppo:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Cleo
+  picture:
+  track: true
+
 erwin:
-  hide_if_away: true
+  hide_if_away: false
   icon:
   mac:
   name: erwin
   picture:
-  track: false
-  vendor:
+  track: true

@@ -24,9 +24,12 @@
       - condition: time
         weekday:
         - sun
-#        - wed
+        - mon
+        - tue
+        - wed
         - thu
-#        - fri
+        - fri
+        - sat
   action:
     service: switch.turn_on
     entity_id: switch.sw115
@@ -79,8 +82,8 @@
         - light.led2
         - light.led1
       data:
-        brightness: 100
-        rgb_color: [0,0,255]
+        brightness: 150
+        rgb_color: [255,163,26]
     - service: notify.ios_Erwin
       data: 
         message: 'Deck LEDs turned on'
@@ -137,7 +140,7 @@
         - light.led2
         - light.led1
       data: 
-        rgb_color: [0, 0, 255]
+        rgb_color: [255,163,26]
         brightness: 100
     - service: switch.turn_on
       entity_id: 
