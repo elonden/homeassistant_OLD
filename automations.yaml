@@ -1,39 +1,27 @@
-#- id: pool_pump_on
-#  alias: Turn on Pool Pump
-#  initial_state: 'on'
-#  trigger:
-#    platform: sun
-#    event: sunrise
-#    offset: 04:00:00
-#  action:
-#    service: switch.turn_on
-#    entity_id: switch.sw115
-
 - id: pool_pump_on
   alias: Turn on pool pump
-  initial_state: 'on'
   trigger:
-    platform: numeric_state
+  - above: '1.2'
     entity_id: sensor.current_power
-    above: 1.3
     for:
       minutes: 15
+    platform: numeric_state
   condition:
-    condition: or
+  - condition: or
     conditions:
-      - condition: time
-        weekday:
-        - sun
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-        - sat
+    - condition: time
+      weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
   action:
+  - entity_id: switch.sw115
     service: switch.turn_on
-    entity_id: switch.sw115
-
+  initial_state: 'on'
 - id: pool_pump_off
   alias: Turn off Pool Pump
   initial_state: 'on'
@@ -46,7 +34,6 @@
   action:
     service: switch.turn_off
     entity_id: switch.sw115
-
 - id: p-garden_lights_on
   alias: Pool lights on
   trigger:
@@ -59,8 +46,7 @@
   condition:
     condition: state
     entity_id: device_tracker.erwin_erwin
-    state: home 
-
+    state: home
 - id: p-garden_lights_off
   alias: Pool lights off
   trigger:
@@ -69,7 +55,6 @@
   action:
     service: switch.turn_off
     entity_id: switch.sw113
-
 - id: d-led2-light-on
   alias: Deck LEDS on
   trigger:
@@ -77,25 +62,27 @@
     offset: 00:30:00
     platform: sun
   action:
-    - service: light.turn_on
-      entity_id: 
-        - light.led2
-        - light.led1
-      data:
-        brightness: 150
-        rgb_color: [255,163,26]
-    - service: notify.ios_Erwin
-      data: 
-        message: 'Deck LEDs turned on'
-    - service: tts.google_say
-      entity_id: device_tracker.erwin_erwin
-      data:
-        message: 'Decking LED lights turned on' 
+  - service: light.turn_on
+    entity_id:
+    - light.led2
+    - light.led1
+    data:
+      brightness: 150
+      rgb_color:
+      - 255
+      - 163
+      - 26
+  - service: notify.ios_erwin
+    data:
+      message: Deck LEDs turned on
+  - service: tts.google_say
+    entity_id: device_tracker.erwin_erwin
+    data:
+      message: Decking LED lights turned on
   condition:
     condition: state
     entity_id: device_tracker.erwin_erwin
     state: home
-     
 - id: d-led2-light-off
   alias: Deck LEDS Off
   trigger:
@@ -104,53 +91,52 @@
   action:
     service: light.turn_off
     entity_id:
-      - light.led2
-      - light.led1
+    - light.led2
+    - light.led1
   condition:
     condition: state
     entity_id: light.led2
-    state: 'on' 
-
+    state: 'on'
 - id: erwin_away
   alias: Erwin leaves the house
-  trigger: 
+  trigger:
     platform: zone
     entity_id: device_tracker.erwin_erwin
     zone: zone.home
     event: leave
   action:
-    - service: light.turn_off
-      entity_id: 
-        - light.led2
-        - light.led1
-    - service: switch.turn_off
-      entity_id:
-        - switch.sw113
-
+  - service: light.turn_off
+    entity_id:
+    - light.led2
+    - light.led1
+  - service: switch.turn_off
+    entity_id:
+    - switch.sw113
 - id: erwin_home
   alias: Erwin comes home
-  trigger: 
+  trigger:
     platform: zone
     entity_id: device_tracker.erwin_erwin
     zone: zone.home
     event: enter
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.led2
-        - light.led1
-      data: 
-        rgb_color: [255,163,26]
-        brightness: 100
-    - service: switch.turn_on
-      entity_id: 
-        - switch.sw113
-  condition: 
+  - service: light.turn_on
+    entity_id:
+    - light.led2
+    - light.led1
+    data:
+      rgb_color:
+      - 255
+      - 163
+      - 26
+      brightness: 100
+  - service: switch.turn_on
+    entity_id:
+    - switch.sw113
+  condition:
     condition: sun
     after: sunset
-    after_offset: "00:30:00"
-
-
+    after_offset: 00:30:00
 - id: TV
   alias: Notify when TV goes on
   trigger:
@@ -158,28 +144,42 @@
     entity_id: sensor.sw112
     above: 70
   action:
-    - service: notify.ios_erwin
-      data:
-        message: 'TV turned on'
-    - service: tts.google_say                     
-      entity_id: device_tracker.erwin_erwin
-      data:
-        message: 'TV  turned on' 
+  - service: notify.ios_erwin
+    data:
+      message: TV turned on
+  - service: tts.google_say
+    entity_id: device_tracker.erwin_erwin
+    data:
+      message: TV  turned on
   condition:
     condition: state
     entity_id: device_tracker.erwin_erwin
     state: not_home
-
 - id: led4
-  alias: "LED3 animation speed"
+  alias: LED3 animation speed
   initial_state: true
   hide_entity: false
   trigger:
-    - platform: state
-      entity_id: input_number.led4
+  - platform: state
+    entity_id: input_number.led4
   action:
-    - service: mqtt.publish
-      data_template:
-        topic: "/home/switch/led4/set"
-        payload: '{"transition":{{ trigger.to_state.state | int }}}'
-    
+  - service: mqtt.publish
+    data_template:
+      topic: /home/switch/led4/set
+      payload: '{"transition":{{ trigger.to_state.state | int }}}'
+
+- id: openuv_poll
+  alias: Update opeUV every 30 minutes during daylight
+  trigger:
+    platform: time_pattern
+    minutes: '/30'
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunrise
+      - condition: sun
+        before: sunset
+  action:
+    service: openuv.update_data
+
