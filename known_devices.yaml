@@ -32,3 +32,11 @@ erwin:
   name: drevl-phone
   picture:
   track: true
+
+erwin_437f45be_1316_49ff_ad25_0246cbb3983f:
+  hide_if_away: false
+  icon:
+  mac:
+  name: erwin
+  picture:
+  track: true

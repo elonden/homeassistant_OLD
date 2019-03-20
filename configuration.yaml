@@ -76,6 +76,12 @@ sun:
 
 ios:
 
+media_player:
+  - platform: kodi
+    host: 192.168.1.227
+    port: 8080
+    tcp_port: 9090
+
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
 
@@ -335,3 +341,4 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 #notify: !include notify.yaml
+

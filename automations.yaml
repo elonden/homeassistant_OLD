@@ -22,6 +22,8 @@
   - entity_id: switch.sw115
     service: switch.turn_on
   initial_state: 'on'
+
+  
 - id: pool_pump_off
   alias: Turn off Pool Pump
   initial_state: 'on'
@@ -47,6 +49,8 @@
     condition: state
     entity_id: device_tracker.erwin_erwin
     state: home
+
+  
 - id: p-garden_lights_off
   alias: Pool lights off
   trigger:
@@ -55,6 +59,8 @@
   action:
     service: switch.turn_off
     entity_id: switch.sw113
+
+
 - id: d-led2-light-on
   alias: Deck LEDS on
   trigger:
@@ -83,6 +89,8 @@
     condition: state
     entity_id: device_tracker.erwin_erwin
     state: home
+
+
 - id: d-led2-light-off
   alias: Deck LEDS Off
   trigger:
@@ -97,6 +105,8 @@
     condition: state
     entity_id: light.led2
     state: 'on'
+
+
 - id: erwin_away
   alias: Erwin leaves the house
   trigger:
@@ -112,6 +122,8 @@
   - service: switch.turn_off
     entity_id:
     - switch.sw113
+
+
 - id: erwin_home
   alias: Erwin comes home
   trigger:
@@ -137,6 +149,8 @@
     condition: sun
     after: sunset
     after_offset: 00:30:00
+
+
 - id: TV
   alias: Notify when TV goes on
   trigger:
@@ -155,6 +169,8 @@
     condition: state
     entity_id: device_tracker.erwin_erwin
     state: not_home
+
+
 - id: led4
   alias: LED3 animation speed
   initial_state: true

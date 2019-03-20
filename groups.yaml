@@ -34,13 +34,27 @@
       - group.main_power_switches
       - group.main_automations
 
-  main_other_view:
-    name: Others
-    icon: mdi:ice-cream
+#  main_other_view:
+#    name: Others
+#    icon: mdi:ice-cream
+#    view: yes
+#    entities:
+
+  main_media_view:
+    name: Media
     view: yes
+    icon: mdi:ice-cream
     entities:
+      - group.main_mediaplayer
+
 
 #####  Groups      
+#
+  main_mediaplayer:
+    name: Media player
+    entities:
+      - media_player.kodi
+        
   main_weather:
     name: Weather
     entities:
