@@ -10,13 +10,14 @@
       - sensor.pi_temperature
 #      - sensor.speedtest_upload
       - group.main_weather
-      - device_tracker.erwin_erwin
-      - device_tracker.erwin_luna
-      - device_tracker.erwin_cleo_oppo
+      - device_tracker.erwin_iphonexr
+      - device_tracker.luna_iphone
+      - device_tracker.cleo_iphone6
       - group.main_power_sensors
       - group.main_solar
       - group.main_pir
       - group.main_uv_info
+      - group.main_speedtest
 
   main_lights_view:
     name: Lights
@@ -78,6 +79,7 @@
       - light.led1
       - light.led2
       - switch.sw113
+      - switch.sw112
 
   main_led_animaton:
     name: "Animated LEDS"
@@ -91,7 +93,6 @@
     control: hidden
     entities:
       - switch.sw111
-      - switch.sw112
 #      - switch.sw114
 
   main_power_sensors:
@@ -126,3 +127,10 @@
       - input_number.poolpump_time
       - switch.sw115
 
+  main_speedtest:
+    name: Internet speed
+    entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
+        

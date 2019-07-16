@@ -16,6 +16,8 @@ homeassistant:
 # Show links to resources in log and frontend
 #introduction:
 
+system_health:
+
 # Enables the frontend
 frontend:
 
@@ -25,8 +27,8 @@ logger:
   default: warning
 
 recorder:
-  purge_interval: 3
-  purge_keep_days: 30
+  purge_interval: 5
+  purge_keep_days: 10
   
 mqtt:
   broker: 192.168.8.49
@@ -46,6 +48,8 @@ http:
   base_url: evlonden.no-ip.biz
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret ssl_key
+  server_host: !secret bind_address
+  server_port: !secret server_port
   #  server_port: 8132
   #  use_x_forward_for: True
 
@@ -85,21 +89,20 @@ media_player:
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
 
-# Weather prediction
-sensor:
-#  - platform: speedtest
-#    server_id: 2629
-#    minute: 30
-#    hour:
-#      - 0
-#      - 6
-#      - 12
-#      - 18
-#    monitored_conditions:
-#      - ping
-#      - download
-#      - upload
+speedtestdotnet:
+  server_id: 2604
+  scan_interval:
+    #      days: 0
+    hours: 1
+    #      minutes: 15
+    #      seconds: 0
+  monitored_conditions:
+    - ping
+    - download
+    - upload
 
+sensor:
+# Weather prediction
   - platform: bom
     station: IDQ60801.94566
     name: Gympie
@@ -211,7 +214,8 @@ sensor:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
     cache: true
     cache_dir: /mnt/music/
     time_memory: 300

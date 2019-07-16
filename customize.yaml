@@ -29,9 +29,9 @@ sensor.bom_gympie_wind_speed_kmh:
 sensor.sw111:
   friendly_name: Fridge
 sensor.sw112:
-  friendly_name: TV 
+  friendly_name: Stairs lighting
 sensor.sw113:
-  friendly_name: Pool & Garden lights 1
+  friendly_name: Pool & Garden lights
 sensor.sw114:
   friendly_name: Temporarily offline
 sensor.sw115:
@@ -63,7 +63,7 @@ light.led1:
 switch.sw111:
   friendly_name: Fridge
 switch.sw112:
-  friendly_name: TV
+  friendly_name: Stairs lighting
 switch.sw113:
   friendly_name: Pool & Garden lights 1
 switch.sw114:
@@ -79,3 +79,12 @@ sensor.pi_temperature:
 ## 
 sensor.pir_led4:
   friendly_name: PIR LED 3
+
+  #sensor.speedtest_download:
+  #  friendly_name: Download
+  #
+  #sensor.speedtest_upload:
+  #  friendly_name: Upload
+  #
+  #sensor.speedtest.ping:
+  #  friendly_name: Ping

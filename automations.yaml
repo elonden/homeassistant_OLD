@@ -1,7 +1,7 @@
 - id: pool_pump_on
   alias: Turn on pool pump
   trigger:
-  - above: '1.2'
+  - above: '6.2'
     entity_id: sensor.current_power
     for:
       minutes: 15
@@ -20,7 +20,7 @@
       - sat
   action:
   - entity_id: switch.sw115
-    service: switch.turn_on
+    service: homeasistant.turn_on
   initial_state: 'on'
 
   
@@ -34,8 +34,9 @@
     for:
       minutes: 15
   action:
-    service: switch.turn_off
+    service: homeassistant.turn_off
     entity_id: switch.sw115
+
 - id: p-garden_lights_on
   alias: Pool lights on
   trigger:
@@ -43,11 +44,11 @@
     offset: 00:30:00
     platform: sun
   action:
-    service: switch.turn_on
+    service: homeassistant.turn_on
     entity_id: switch.sw113
   condition:
     condition: state
-    entity_id: device_tracker.erwin_erwin
+    entity_id: device_tracker.erwin_iphonexr
     state: home
 
   
@@ -57,7 +58,7 @@
     platform: time
     at: '23:30:00'
   action:
-    service: switch.turn_off
+    service: homeassistant.turn_off
     entity_id: switch.sw113
 
 
@@ -68,7 +69,7 @@
     offset: 00:30:00
     platform: sun
   action:
-  - service: light.turn_on
+  - service: homeassistant.turn_on
     entity_id:
     - light.led2
     - light.led1
@@ -82,12 +83,12 @@
     data:
       message: Deck LEDs turned on
   - service: tts.google_say
-    entity_id: device_tracker.erwin_erwin
+    entity_id: device_tracker.erwin_iphonexr
     data:
       message: Decking LED lights turned on
   condition:
     condition: state
-    entity_id: device_tracker.erwin_erwin
+    entity_id: device_tracker.erwin_iphonexr
     state: home
 
 
@@ -97,7 +98,7 @@
     at: '23:59:00'
     platform: time
   action:
-    service: light.turn_off
+    service: homeassistant.turn_off
     entity_id:
     - light.led2
     - light.led1
@@ -111,16 +112,14 @@
   alias: Erwin leaves the house
   trigger:
     platform: zone
-    entity_id: device_tracker.erwin_erwin
+    entity_id: device_tracker.erwin_iphonexr
     zone: zone.home
     event: leave
   action:
-  - service: light.turn_off
+  - service: homeassistant.turn_off
     entity_id:
     - light.led2
     - light.led1
-  - service: switch.turn_off
-    entity_id:
     - switch.sw113
 
 
@@ -128,12 +127,13 @@
   alias: Erwin comes home
   trigger:
     platform: zone
-    entity_id: device_tracker.erwin_erwin
+    entity_id: device_tracker.erwin_iphonexr
     zone: zone.home
     event: enter
   action:
-  - service: light.turn_on
+  - service: homeassistant.turn_on
     entity_id:
+    - switch.sw113
     - light.led2
     - light.led1
     data:
@@ -142,9 +142,6 @@
       - 163
       - 26
       brightness: 100
-  - service: switch.turn_on
-    entity_id:
-    - switch.sw113
   condition:
     condition: sun
     after: sunset
@@ -162,12 +159,12 @@
     data:
       message: TV turned on
   - service: tts.google_say
-    entity_id: device_tracker.erwin_erwin
+    entity_id: device_tracker.erwin_iphonexr
     data:
-      message: TV  turned on
+      message: lights turned on
   condition:
     condition: state
-    entity_id: device_tracker.erwin_erwin
+    entity_id: device_tracker.erwin_iphonexr
     state: not_home
 
 

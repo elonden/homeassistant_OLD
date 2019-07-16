@@ -1,4 +1,5 @@
   - platform: mqtt
+#    schema: json
     name: "led2"
     command_topic: "/home/switch/led2/relay/0/set"
     state_topic: "/home/switch/led2/relay/0"
@@ -7,10 +8,11 @@
     white_value_command_topic: "/home/switch/led2/channel/3/set"
     payload_on: 1
     payload_off: 0
-    rgb: true
+#    rgb: true
     brightness_command_topic: "/home/switch/led2/brightness/set"
 
   - platform: mqtt
+#    schema: json
     name: "led1"
     command_topic: "/home/switch/led1/relay/0/set"
     state_topic: "/home/switch/led1/relay/0"
@@ -19,16 +21,16 @@
     white_value_command_topic: "/home/switch/led1/channel/3/set"
     payload_on: 1
     payload_off: 0
-    rgb: true
+#    rgb: true
     brightness_command_topic: "/home/switch/led1/brightness/set"
 
 
   - platform: mqtt
-    schema: json
+#    schema: json
     name: "led4"
     command_topic: "/home/switch/led4/set"
     state_topic: "/home/switch/led4/state"
-    effect: true
+#    effect: true
     effect_list:
       - ambient
       - bpm
@@ -49,9 +51,9 @@
       - sinelon  
       - solid  
       - twinkle  
-    brightness: true
-    flash: true
-    rgb: true
+        #    brightness: true
+#    flash: true
+#    rgb: true
     optimistic: false
     qos: 0
 
